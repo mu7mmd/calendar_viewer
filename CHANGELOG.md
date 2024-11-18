@@ -1,3 +1,7 @@
+## 1.0.0+3 - 18/11/2024
+
+* Dart format some files.
+
 ## 1.0.0+2 - 18/11/2024
 
 * Correct github example path in README.md.

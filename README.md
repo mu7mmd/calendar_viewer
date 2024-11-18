@@ -40,7 +40,7 @@ A highly customizable calendar widget designed for reservations, events, and mul
 ### Add Dependency
 ```yaml
 dependencies:
-  calendar_viewer: ^1.0.0 # Use the latest version
+  calendar_viewer: ^1.0.0+3 # Use the latest version
 ```
 
 ### Import Package
