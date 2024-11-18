@@ -130,8 +130,8 @@ CalendarViewer(
 
 ## 📱 Example Project <a name="example"></a>
 
-- **Pub Example**: Available on [pub.dev](https://pub.dev/).
-- **GitHub Example Project**: Available on [GitHub](https://github.com/).
+- **Pub Example**: Available on [pub.dev](https://pub.dev/packages/calendar_viewer/example).
+- **GitHub Example Project**: Available on [GitHub](https://github.com/calendar_viewer/tree/main/example).
 
 ---
 
