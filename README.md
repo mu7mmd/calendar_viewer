@@ -20,7 +20,7 @@ and the Flutter guide for
 
 A highly customizable calendar widget designed for reservations, events, and multi-language support.
 
-![Calendar](https://raw.githubusercontent.com/mu7mmd/calendar_viewer/main/doc/assets/calendar.png)
+<img src="https://raw.githubusercontent.com/mu7mmd/calendar_viewer/main/doc/assets/calendar.png" alt="Calendar" width="300" />
 
 ---
 
