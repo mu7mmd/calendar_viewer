@@ -1,7 +1,9 @@
 name: calendar_viewer
-description: "A new Flutter project."
+description: "A highly customizable calendar widget designed for reservations, events, and multi-language support."
 version: 0.0.1
-homepage:
+homepage: https://github.com/mu7mmd/calendar_viewer
+repository: https://github.com/mu7mmd/calendar_viewer
+issue_tracker: https://github.com/mu7mmd/calendar_viewer/issues
 
 environment:
   sdk: ^3.5.3
