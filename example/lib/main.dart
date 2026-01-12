@@ -93,7 +93,10 @@ class _CalendarViewerExampleState extends State<CalendarViewerExample> {
             ),
           ),
           const SizedBox(height: 16),
-          CalendarViewer(
+
+          /// Or use [CalendarPageViewer] if you want to show only one month at a time.
+          /// with no tab bar.
+          CalendarTabBarViewer(
             key: Key(_selectedDate.toString()),
             initialDate: _selectedDate,
             months: const [
@@ -141,7 +144,7 @@ class _CalendarViewerExampleState extends State<CalendarViewerExample> {
                   )) {
                 return CalendarDateConfig(
                   decoration: BoxDecoration(
-                    color: Colors.teal.withOpacity(.3),
+                    color: Colors.teal.withValues(alpha: .3),
                   ),
                 );
               }
