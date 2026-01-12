@@ -5,6 +5,7 @@ final class CalendarDateConfig {
   final Color? highlightColor;
   final TextStyle? textStyle;
   final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   final Alignment alignment;
   final Decoration? decoration;
   final ValueChanged<DateTime>? onTap;
@@ -15,6 +16,7 @@ final class CalendarDateConfig {
     this.highlightColor,
     this.textStyle,
     this.padding,
+    this.margin,
     this.alignment = Alignment.center,
     this.decoration = const BoxDecoration(
       border: Border(

@@ -17,6 +17,7 @@ class _MonthDayCard extends StatelessWidget {
       height: height,
       alignment: config.alignment,
       padding: config.padding,
+      margin: config.margin,
       decoration: config.decoration,
       child: child,
     );
