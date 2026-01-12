@@ -11,9 +11,9 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-![Static Badge](https://img.shields.io/badge/pub-v1.0.0-blue?logo=dart&link=https%3A%2F%2Fpub.dev%2Fpackages%2Fcalendar_viewer)
-![Static Badge](https://img.shields.io/badge/github-mu7mmd-limegreen?logo=github&link=https%3A%2F%2Fgithub.com%2Fmu7mmd)
-![Static Badge](https://img.shields.io/badge/linkedin-3mdy-blue?logo=linkedin&link=https%3A%2F%2Fwww.linkedin.com%2Fin%2F3mdy)
+[![pub package](https://img.shields.io/badge/pub-v1.0.2-blue?logo=dart)](https://pub.dev/packages/calendar_viewer)
+[![github](https://img.shields.io/badge/github-mu7mmd-limegreen?logo=github)](https://github.com/mu7mmd)
+[![linkedin](https://img.shields.io/badge/linkedin-3mdy-blue?logo=linkedin)](https://www.linkedin.com/in/3mdy)
 
 
 # Calendar Viewer
@@ -40,7 +40,7 @@ A highly customizable calendar widget designed for reservations, events, and mul
 ### Add Dependency
 ```yaml
 dependencies:
-  calendar_viewer: ^1.0.0+3 # Use the latest version
+  calendar_viewer: ^1.0.2 # Use the latest version
 ```
 
 ### Import Package
@@ -63,7 +63,9 @@ import 'package:calendar_viewer/calendar_viewer.dart';
 
 ### Basic Example:
 ```dart
-CalendarViewer(
+/// Or use [CalendarPageViewer] if you want to show only one month at a time.
+/// with no tab bar.
+CalendarTabBarViewer(
   initialDate: DateTime.now(),
   months: ['Jan', 'Feb', ...], // List of 12 months
   weekdays: ['Mon', 'Tue', ...], // List of 7 weekdays
@@ -78,7 +80,9 @@ CalendarViewer(
 
 ### Advanced Configuration:
 ```dart
-CalendarViewer(
+/// Or use [CalendarPageViewer] if you want to show only one month at a time.
+/// with no tab bar.
+CalendarTabBarViewer(
   key: Key(_selectedDate.toString()),
   initialDate: _selectedDate,
   months: ['January', 'February', ...],
@@ -87,14 +91,14 @@ CalendarViewer(
     if (date.isAtSameMomentAs(DateTime(_now.year, _now.month, _now.day))) {
       return CalendarDateConfig(
         decoration: BoxDecoration(
-          color: Colors.teal.withOpacity(.3),
+          color: Colors.teal.withValues(alpha: .6),
           borderRadius: BorderRadius.circular(5),
         ),
       );
     } else if(date.isAtSameMomentAs(_selectedDate)) {
       return CalendarDateConfig(
         decoration: BoxDecoration(
-          color: Colors.blue.withOpacity(.3),
+          color: Colors.blue.withValues(alpha: .6),
           borderRadius: BorderRadius.circular(5),
         ),
       );
@@ -114,7 +118,7 @@ CalendarViewer(
   ],
   reservation: CalenderReservationConfig(
     style: CalendarReservationStyle(
-      color: Colors.teal.withOpacity(0.6),
+      color: Colors.teal.withValues(alpha: .6),
     ),
   ),
   nextMonthDateConfig: CalendarDateConfig(
@@ -139,25 +143,26 @@ CalendarViewer(
 
 | Property              | Description                                                                 |
 |-----------------------|-----------------------------------------------------------------------------|
-| `initialDate`         | The initial date used to calculate the selected month/year.                |
-| `months`              | List of 12 month names in your app's locale.                               |
-| `weekdays`            | List of 7 weekday names in your app's locale.                              |
-| `reservation`         | Configures reservations (e.g., style, data).                               |
-| `dateConfig`          | Default configuration for calendar dates.                                  |
-| `dateConfigBuilder`   | Function to customize the style of specific dates.                         |
-| `onWeekdayTap`        | Callback triggered on weekday tap with weekday and month as arguments.     |
-| `customWeekdayStyle`  | Map of styles for specific weekdays (e.g., weekends).                      |
-| `monthsTabBarConfig`  | Configuration for the months tab bar.                                      |
+| `initialDate`         | The initial date used to calculate the selected month/year.                 |
+| `months`              | List of 12 month names in your app's locale.                                |
+| `weekdays`            | List of 7 weekday names in your app's locale.                               |
+| `reservation`         | Configures reservations (e.g., style, data).                                |
+| `dateConfig`          | Default configuration for calendar dates.                                   |
+| `dateConfigBuilder`   | Function to customize the style of specific dates.                          |
+| `onWeekdayTap`        | Callback triggered on weekday tap with weekday and month as arguments.      |
+| `customWeekdayStyle`  | Map of styles for specific weekdays (e.g., weekends).                       |
+| `monthsTabBarConfig`  | Configuration for the months tab bar.                                       |
+| `showNextMonthDays`   | Whether to display days from the next month in the current month's view.    |
 
 ---
 
 ## 🎯 Events <a name="events"></a>
 
-| Event                | Description                                                                   |
-|----------------------|-------------------------------------------------------------------------------|
+| Event                | Description                                                                  |
+|----------------------|------------------------------------------------------------------------------|
 | `onWeekdayTap`       | Triggered when a weekday is tapped. Passes weekday and month.                |
 | `onTap` (in dates)   | Triggered when a specific date is tapped.                                    |
-| `onLongPress` (in dates) | Triggered when a specific date is long-pressed.                            |
+| `onLongPress` (in dates) | Triggered when a specific date is long-pressed.                          |
 
 ---
 
