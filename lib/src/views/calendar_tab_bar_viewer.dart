@@ -48,6 +48,7 @@ class CalendarTabBarViewer extends StatelessWidget {
     this.dateConfigBuilder,
     this.nextMonthDateConfig = const CalendarDateConfig(),
     this.nextMonthDateConfigBuilder,
+    this.showNextMonthDays = true,
     this.reservation,
   }) : assert(months.length == 12 &&
             weekdays.length == 7 &&
@@ -99,7 +100,7 @@ class CalendarTabBarViewer extends StatelessWidget {
   /// - The current month number (1–12).
   ///
   /// onWeekdayTap: (weekday, month) {}
-  final Function(int weekday, int month)? onWeekdayTap;
+  final void Function(int weekday, int month)? onWeekdayTap;
 
   /// Default style and properties for calendar dates.
   final CalendarDateConfig dateConfig;
@@ -121,6 +122,9 @@ class CalendarTabBarViewer extends StatelessWidget {
   ///
   /// Reservations span multiple dates and are styled based on the [CalenderReservationConfig].
   final CalenderReservationConfig? reservation;
+
+  /// Whether to show dates of the following month in the current month's calendar.
+  final bool showNextMonthDays;
 
   @override
   Widget build(BuildContext context) {
@@ -182,6 +186,7 @@ class CalendarTabBarViewer extends StatelessWidget {
                         dateConfigBuilder: dateConfigBuilder,
                         nextMonthDateConfigBuilder: nextMonthDateConfigBuilder,
                         reservation: reservation,
+                        showNextMonthDays: showNextMonthDays,
                       ))
                   .toList(),
             ),

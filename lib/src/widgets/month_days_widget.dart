@@ -15,6 +15,7 @@ class _MonthDaysWidget extends StatelessWidget {
     required this.nextMonthDateConfigBuilder,
     required this.dateCardHeight,
     required this.reservation,
+    required this.showNextMonthDays,
   });
 
   final int year;
@@ -30,6 +31,7 @@ class _MonthDaysWidget extends StatelessWidget {
   final CalendarDateConfig? Function(DateTime)? dateConfigBuilder;
   final CalendarDateConfig? Function(DateTime)? nextMonthDateConfigBuilder;
   final CalenderReservationConfig? reservation;
+  final bool showNextMonthDays;
 
   bool get _hasReservation => reservation != null;
 
@@ -71,7 +73,7 @@ class _MonthDaysWidget extends StatelessWidget {
                             ? () => dateConfig.onLongPress!(_getDate(day))
                             : null,
                       );
-                    } else {
+                    } else if (showNextMonthDays) {
                       nextMonthDay++;
                       return _MonthDay(
                         day: nextMonthDay,
@@ -88,6 +90,8 @@ class _MonthDaysWidget extends StatelessWidget {
                                 nextMonthDateConfig.onLongPress!(_getDate(day))
                             : null,
                       );
+                    } else {
+                      return const Spacer();
                     }
                   },
                 ),
