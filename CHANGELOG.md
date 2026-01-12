@@ -1,3 +1,7 @@
+## 1.0.1 - 12/01/2026
+
+* Separate [CalendarViewer] to [CalendarPageViewer] and [CalendarTabBarViewer].
+
 ## 1.0.0+3 - 18/11/2024
 
 * Dart format some files.
