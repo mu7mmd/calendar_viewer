@@ -26,6 +26,8 @@ part '../models/is_day_reserved.dart';
 
 part '../helpers/helpers.dart';
 
-part 'calendar_tab_bar_viewer.dart';
+part 'calendar_list_viewer.dart';
 
 part 'calendar_page_viewer.dart';
+
+part 'calendar_tab_bar_viewer.dart';

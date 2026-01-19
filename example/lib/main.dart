@@ -62,7 +62,7 @@ class _CalendarViewerExampleState extends State<CalendarViewerExample> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: ListView(
+      body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -96,65 +96,70 @@ class _CalendarViewerExampleState extends State<CalendarViewerExample> {
 
           /// Or use [CalendarPageViewer] if you want to show only one month at a time.
           /// with no tab bar.
-          CalendarTabBarViewer(
-            key: Key(_selectedDate.toString()),
-            initialDate: _selectedDate,
-            months: const [
-              'Jan',
-              'Feb',
-              'Mar',
-              'Apr',
-              'May',
-              'Jun',
-              'Jul',
-              'Aug',
-              'Sep',
-              'Oct',
-              'Nov',
-              'Dec'
-            ],
-            weekdays: const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            reservation: CalenderReservationConfig(
-              style: const CalendarReservationStyle(
-                height: 20,
-                userImageSize: 14,
-                userNameTextStyle: TextStyle(fontSize: 12),
-                color: Color.fromARGB(255, 150, 201, 189),
-                radius: Radius.circular(20),
-                bottomMargin: 4,
-                horizontalMargin: 16,
-              ),
-              reservations: [
-                CalendarViewerReservation(
-                  from: DateTime(2023, 10, 9),
-                  to: DateTime(2023, 10, 13),
-                  user: const CalendarReservationUser(
-                    name: 'Mohammad Alamoudi',
-                    netImage:
-                        'https://cdn-icons-png.flaticon.com/512/9203/9203764.png',
-                  ),
-                ),
+          ///
+          /// Or use [CalendarListViewer] if you want to show all months at a time.
+          /// with a scrollable list.
+          Expanded(
+            child: CalendarTabBarViewer(
+              key: Key(_selectedDate.toString()),
+              initialDate: _selectedDate,
+              months: const [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
               ],
-            ),
-            dateConfigBuilder: (date) {
-              // Return custom style for specific dates
-              if (date.isAtSameMomentAs(_selectedDate) ||
-                  date.isAtSameMomentAs(
-                    DateTime(_now.year, _now.month, _now.day),
-                  )) {
-                return CalendarDateConfig(
-                  decoration: BoxDecoration(
-                    color: Colors.teal.withValues(alpha: .3),
+              weekdays: const ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              reservation: CalenderReservationConfig(
+                style: const CalendarReservationStyle(
+                  height: 20,
+                  userImageSize: 14,
+                  userNameTextStyle: TextStyle(fontSize: 12),
+                  color: Color.fromARGB(255, 150, 201, 189),
+                  radius: Radius.circular(20),
+                  bottomMargin: 4,
+                  horizontalMargin: 16,
+                ),
+                reservations: [
+                  CalendarViewerReservation(
+                    from: DateTime(2023, 10, 9),
+                    to: DateTime(2023, 10, 13),
+                    user: const CalendarReservationUser(
+                      name: 'Mohammad Alamoudi',
+                      netImage:
+                          'https://cdn-icons-png.flaticon.com/512/9203/9203764.png',
+                    ),
                   ),
-                );
-              }
-              // return null for others to use [dateConfig] as default.
-              return null;
-            },
-            nextMonthDateConfig: CalendarDateConfig(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                border: Border.all(color: Colors.black12, width: 0.5),
+                ],
+              ),
+              dateConfigBuilder: (date) {
+                // Return custom style for specific dates
+                if (date.isAtSameMomentAs(_selectedDate) ||
+                    date.isAtSameMomentAs(
+                      DateTime(_now.year, _now.month, _now.day),
+                    )) {
+                  return CalendarDateConfig(
+                    decoration: BoxDecoration(
+                      color: Colors.teal.withValues(alpha: .3),
+                    ),
+                  );
+                }
+                // return null for others to use [dateConfig] as default.
+                return null;
+              },
+              nextMonthDateConfig: CalendarDateConfig(
+                decoration: BoxDecoration(
+                  color: Colors.black12,
+                  border: Border.all(color: Colors.black12, width: 0.5),
+                ),
               ),
             ),
           ),
