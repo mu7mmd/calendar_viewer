@@ -36,6 +36,7 @@ class CalendarListViewer extends StatelessWidget {
     this.scrollController,
     this.scrollDirection = Axis.vertical,
     this.shrinkWrap = false,
+    CalendarListViewerMonthHeader? monthHeader,
     this.physics,
     required this.initialDate,
     required this.weekdays,
@@ -50,7 +51,8 @@ class CalendarListViewer extends StatelessWidget {
     this.reservation,
     this.showNextMonthDays = true,
     this.padding,
-  }) : assert(weekdays.length == 7);
+  })  : assert(weekdays.length == 7),
+        _monthHeader = monthHeader ?? const CalendarListViewerMonthHeader();
 
   /// The height of the week bar and dates section in the calendar.
   final double eachMonthHeight;
@@ -69,6 +71,8 @@ class CalendarListViewer extends StatelessWidget {
 
   /// The physics of the list view.
   final ScrollPhysics? physics;
+
+  final CalendarListViewerMonthHeader _monthHeader;
 
   /// The builder function that creates the separator widget.
   final IndexedWidgetBuilder separatorBuilder;
@@ -157,27 +161,34 @@ class CalendarListViewer extends StatelessWidget {
       physics: physics,
       itemBuilder: (context, index) {
         final month = monthsModels[index];
-        return SizedBox(
-          width: eachMonthWidth,
-          height: eachMonthHeight,
-          child: _MonthDaysWidget(
-            month,
-            year: initialDate.year,
-            weekDays: weekdays,
-            weekBarStyle: weekBarStyle,
-            defaultWeekdayStyle: weekdayStyle,
-            customWeekdayStyle: customWeekdayStyle,
-            onWeekdayTap: onWeekdayTap != null
-                ? (weekday) => onWeekdayTap!(weekday, month.num)
-                : null,
-            dateConfig: dateConfig,
-            nextMonthDateConfig: nextMonthDateConfig,
-            dateCardHeight: (eachMonthHeight - weekBarStyle.height) / 5,
-            dateConfigBuilder: dateConfigBuilder,
-            nextMonthDateConfigBuilder: nextMonthDateConfigBuilder,
-            reservation: reservation,
-            showNextMonthDays: showNextMonthDays,
-          ),
+        return Column(
+          spacing: _monthHeader.spacing,
+          crossAxisAlignment: _monthHeader.crossAlignment,
+          children: [
+            if (_monthHeader.hasBuilder) _monthHeader.builder!(context, index),
+            SizedBox(
+              width: eachMonthWidth,
+              height: eachMonthHeight,
+              child: _MonthDaysWidget(
+                month,
+                year: initialDate.year,
+                weekDays: weekdays,
+                weekBarStyle: weekBarStyle,
+                defaultWeekdayStyle: weekdayStyle,
+                customWeekdayStyle: customWeekdayStyle,
+                onWeekdayTap: onWeekdayTap != null
+                    ? (weekday) => onWeekdayTap!(weekday, month.num)
+                    : null,
+                dateConfig: dateConfig,
+                nextMonthDateConfig: nextMonthDateConfig,
+                dateCardHeight: (eachMonthHeight - weekBarStyle.height) / 5,
+                dateConfigBuilder: dateConfigBuilder,
+                nextMonthDateConfigBuilder: nextMonthDateConfigBuilder,
+                reservation: reservation,
+                showNextMonthDays: showNextMonthDays,
+              ),
+            ),
+          ],
         );
       },
       separatorBuilder: separatorBuilder,
