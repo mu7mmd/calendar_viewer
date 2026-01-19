@@ -1,3 +1,7 @@
+## 1.0.3 - 19/01/2026
+
+* Add `CalendarListViewer` widget.
+
 ## 1.0.2 - 12/01/2026
 
 * Add `showNextMonthDays` to show/hide next month days in the current month's calendar.
