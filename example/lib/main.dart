@@ -94,10 +94,10 @@ class _CalendarViewerExampleState extends State<CalendarViewerExample> {
           ),
           const SizedBox(height: 16),
 
-          /// Or use [CalendarPageViewer] if you want to show only one month at a time.
+          /// Use [CalendarPageViewer] if you want to show only one month at a time.
           /// with no tab bar.
           ///
-          /// Or use [CalendarListViewer] if you want to show all months at a time.
+          /// Use [CalendarListViewer] if you want to show all months at a time.
           /// with a scrollable list.
           Expanded(
             child: CalendarTabBarViewer(

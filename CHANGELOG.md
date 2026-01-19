@@ -1,3 +1,7 @@
+## 1.0.4 - 19/01/2026
+
+* Add `CalendarListViewerMonthHeader` widget to `CalendarListViewer`.
+
 ## 1.0.3 - 19/01/2026
 
 * Add `CalendarListViewer` widget.
