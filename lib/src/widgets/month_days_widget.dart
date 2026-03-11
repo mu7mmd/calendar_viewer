@@ -15,12 +15,13 @@ class _MonthDaysWidget extends StatelessWidget {
     required this.nextMonthDateConfigBuilder,
     required this.dateCardHeight,
     required this.reservation,
+    required this.rowSpacing,
     required this.showNextMonthDays,
   });
 
   final int year;
-  final List<String> weekDays;
   final _MonthModel month;
+  final List<String> weekDays;
   final CalendarWeekBarStyle weekBarStyle;
   final CalendarWeekdayStyle defaultWeekdayStyle;
   final Map<int, CalendarWeekdayStyle>? customWeekdayStyle;
@@ -31,6 +32,7 @@ class _MonthDaysWidget extends StatelessWidget {
   final CalendarDateConfig? Function(DateTime)? dateConfigBuilder;
   final CalendarDateConfig? Function(DateTime)? nextMonthDateConfigBuilder;
   final CalenderReservationConfig? reservation;
+  final double rowSpacing;
   final bool showNextMonthDays;
 
   bool get _hasReservation => reservation != null;
@@ -49,77 +51,76 @@ class _MonthDaysWidget extends StatelessWidget {
           onWeekdayTap,
           (weekday) => customWeekdayStyle?[weekday] ?? defaultWeekdayStyle,
         ),
-        ...List.generate(
-          5,
-          (weekIndex) => Stack(
-            alignment: reservation?.style.alignment ?? Alignment.bottomCenter,
-            children: [
-              Row(
-                children: List.generate(
-                  7,
-                  (dayIndex) {
-                    final day = (weekIndex * 7) + dayIndex + 1;
-                    if (day <= month.days) {
-                      return _MonthDay(
-                        day: day,
-                        height: dateCardHeight,
-                        config: dateConfigBuilder != null
-                            ? dateConfigBuilder!(_getDate(day)) ?? dateConfig
-                            : dateConfig,
-                        onTap: dateConfig.onTap != null
-                            ? () => dateConfig.onTap!(_getDate(day))
-                            : null,
-                        onLongPress: dateConfig.onLongPress != null
-                            ? () => dateConfig.onLongPress!(_getDate(day))
-                            : null,
-                      );
-                    } else if (showNextMonthDays) {
-                      nextMonthDay++;
-                      return _MonthDay(
-                        day: nextMonthDay,
-                        height: dateCardHeight,
-                        config: nextMonthDateConfigBuilder != null
-                            ? nextMonthDateConfigBuilder!(_getDate(day)) ??
-                                nextMonthDateConfig
-                            : nextMonthDateConfig,
-                        onTap: nextMonthDateConfig.onTap != null
-                            ? () => nextMonthDateConfig.onTap!(_getDate(day))
-                            : null,
-                        onLongPress: nextMonthDateConfig.onLongPress != null
-                            ? () =>
-                                nextMonthDateConfig.onLongPress!(_getDate(day))
-                            : null,
-                      );
-                    } else {
-                      return const Spacer();
-                    }
-                  },
+        Column(
+          spacing: rowSpacing,
+          children: List.generate(
+            5,
+            (weekIndex) => Stack(
+              alignment: reservation?.style.alignment ?? Alignment.bottomCenter,
+              children: [
+                Row(
+                  children: List.generate(
+                    7,
+                    (dayIndex) {
+                      final day = (weekIndex * 7) + dayIndex + 1;
+                      final date = _getDate(day);
+                      if (day <= month.days) {
+                        return _MonthDay(
+                          day: day,
+                          height: dateCardHeight - rowSpacing,
+                          config: dateConfigBuilder?.call(date) ?? dateConfig,
+                          onTap: dateConfig.onTap != null
+                              ? () => dateConfig.onTap!(date)
+                              : null,
+                          onLongPress: dateConfig.onLongPress != null
+                              ? () => dateConfig.onLongPress!(date)
+                              : null,
+                        );
+                      } else if (showNextMonthDays) {
+                        nextMonthDay++;
+                        return _MonthDay(
+                          day: nextMonthDay,
+                          height: dateCardHeight,
+                          config: nextMonthDateConfigBuilder?.call(date) ??
+                              nextMonthDateConfig,
+                          onTap: nextMonthDateConfig.onTap != null
+                              ? () => nextMonthDateConfig.onTap!(date)
+                              : null,
+                          onLongPress: nextMonthDateConfig.onLongPress != null
+                              ? () => nextMonthDateConfig.onLongPress!(date)
+                              : null,
+                        );
+                      } else {
+                        return const Spacer();
+                      }
+                    },
+                  ),
                 ),
-              ),
-              if (_hasReservation)
-                _BookedDaysUserRow(
-                  year: year,
-                  month: month.num,
-                  weekIndex: weekIndex,
-                  weekDays: weekIndex != 4 ? 7 : month.days - 28,
-                  dayBuilder: (date) =>
-                      _dayBuilder(date, reservation!.reservations),
-                  childBuilder: !reservation!.hasBuilder
-                      ? (data) => Expanded(
-                            flex: data.weekDays,
-                            child: _UserContainer(
-                              data: data,
-                              style: reservation!.style,
+                if (_hasReservation)
+                  _BookedDaysUserRow(
+                    year: year,
+                    month: month.num,
+                    weekIndex: weekIndex,
+                    weekDays: weekIndex != 4 ? 7 : month.days - 28,
+                    dayBuilder: (date) =>
+                        _dayBuilder(date, reservation!.reservations),
+                    childBuilder: !reservation!.hasBuilder
+                        ? (data) => Expanded(
+                              flex: data.weekDays,
+                              child: _UserContainer(
+                                data: data,
+                                style: reservation!.style,
+                              ),
+                            )
+                        : (data) => Expanded(
+                              flex: data.weekDays,
+                              child: reservation!.builder!(data),
                             ),
-                          )
-                      : (data) => Expanded(
-                            flex: data.weekDays,
-                            child: reservation!.builder!(data),
-                          ),
-                )
-            ],
+                  )
+              ],
+            ),
           ),
-        ),
+        )
       ],
     );
   }

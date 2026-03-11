@@ -48,6 +48,7 @@ class CalendarTabBarViewer extends StatelessWidget {
     this.dateConfigBuilder,
     this.nextMonthDateConfig = const CalendarDateConfig(),
     this.nextMonthDateConfigBuilder,
+    this.rowSpacing = 0,
     this.showNextMonthDays = true,
     this.reservation,
   }) : assert(months.length == 12 &&
@@ -123,6 +124,8 @@ class CalendarTabBarViewer extends StatelessWidget {
   /// Reservations span multiple dates and are styled based on the [CalenderReservationConfig].
   final CalenderReservationConfig? reservation;
 
+  final double rowSpacing;
+
   /// Whether to show dates of the following month in the current month's calendar.
   final bool showNextMonthDays;
 
@@ -186,6 +189,7 @@ class CalendarTabBarViewer extends StatelessWidget {
                         dateConfigBuilder: dateConfigBuilder,
                         nextMonthDateConfigBuilder: nextMonthDateConfigBuilder,
                         reservation: reservation,
+                        rowSpacing: rowSpacing,
                         showNextMonthDays: showNextMonthDays,
                       ))
                   .toList(),

@@ -47,6 +47,7 @@ class CalendarPageViewer extends StatelessWidget {
     this.nextMonthDateConfig = const CalendarDateConfig(),
     this.nextMonthDateConfigBuilder,
     this.reservation,
+    this.rowSpacing = 0,
     this.showNextMonthDays = true,
   }) : assert(weekdays.length == 7);
 
@@ -112,6 +113,8 @@ class CalendarPageViewer extends StatelessWidget {
   /// Reservations span multiple dates and are styled based on the [CalenderReservationConfig].
   final CalenderReservationConfig? reservation;
 
+  final double rowSpacing;
+
   /// Whether to show dates of the following month in the current month's calendar.
   final bool showNextMonthDays;
 
@@ -155,6 +158,7 @@ class CalendarPageViewer extends StatelessWidget {
             dateConfigBuilder: dateConfigBuilder,
             nextMonthDateConfigBuilder: nextMonthDateConfigBuilder,
             reservation: reservation,
+            rowSpacing: rowSpacing,
             showNextMonthDays: showNextMonthDays,
           );
         },
