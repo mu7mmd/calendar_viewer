@@ -1,4 +1,8 @@
-## 1.0.5 - 19/01/2026
+## 1.0.6 - 11/03/2026
+
+* Add `rowSpacing` property.
+
+## 1.0.5 - 11/03/2026
 
 * Add `ScrollPhysics` property to `CalendarPageViewer`.
 
