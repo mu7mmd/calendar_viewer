@@ -35,6 +35,7 @@ class CalendarPageViewer extends StatelessWidget {
     super.key,
     this.height = 420,
     this.pageController,
+    this.physics,
     required this.initialDate,
     required this.weekdays,
     this.weekBarStyle = const CalendarWeekBarStyle(),
@@ -54,6 +55,9 @@ class CalendarPageViewer extends StatelessWidget {
 
   /// A [PageController] for controlling month tabs. Optional; if provided, its length must be 12.
   final PageController? pageController;
+
+  /// The physics of the list view.
+  final ScrollPhysics? physics;
 
   /// The initial date used to select the starting month and calculate year-based dates.
   final DateTime initialDate;
@@ -132,6 +136,7 @@ class CalendarPageViewer extends StatelessWidget {
       height: height,
       child: PageView.builder(
         controller: pageController,
+        physics: physics,
         itemBuilder: (context, index) {
           final month = monthsModels[index];
           return _MonthDaysWidget(

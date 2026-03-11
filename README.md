@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-[![pub package](https://img.shields.io/badge/pub-v1.0.4-blue?logo=dart)](https://pub.dev/packages/calendar_viewer)
+[![pub package](https://img.shields.io/badge/pub-v1.0.5-blue?logo=dart)](https://pub.dev/packages/calendar_viewer)
 [![github](https://img.shields.io/badge/github-mu7mmd-limegreen?logo=github)](https://github.com/mu7mmd)
 [![linkedin](https://img.shields.io/badge/linkedin-3mdy-blue?logo=linkedin)](https://www.linkedin.com/in/3mdy)
 
@@ -40,7 +40,7 @@ A highly customizable calendar widget designed for reservations, events, and mul
 ### Add Dependency
 ```yaml
 dependencies:
-  calendar_viewer: ^1.0.4 # Use the latest version
+  calendar_viewer: ^1.0.5 # Use the latest version
 ```
 
 ### Import Package

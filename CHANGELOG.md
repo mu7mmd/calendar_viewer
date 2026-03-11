@@ -1,3 +1,7 @@
+## 1.0.5 - 19/01/2026
+
+* Add `ScrollPhysics` property to `CalendarPageViewer`.
+
 ## 1.0.4 - 19/01/2026
 
 * Add `CalendarListViewerMonthHeader` widget to `CalendarListViewer`.
