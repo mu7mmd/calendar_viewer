@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final class CalendarMonthsTabBarConfig {
+class CalendarMonthsTabBarConfig {
   final TabController? tabController;
   final TextStyle? unselectedLabelStyle;
   final TextStyle? selectedLabelStyle;

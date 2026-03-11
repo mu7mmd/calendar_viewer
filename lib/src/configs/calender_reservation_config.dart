@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../calendar_viewer.dart';
 
-final class CalenderReservationConfig {
+class CalenderReservationConfig {
   const CalenderReservationConfig({
     required this.reservations,
     this.style = const CalendarReservationStyle(),

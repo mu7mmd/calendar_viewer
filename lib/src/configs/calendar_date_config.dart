@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final class CalendarDateConfig {
+class CalendarDateConfig {
   final Color? splashColor;
   final Color? highlightColor;
   final TextStyle? textStyle;
