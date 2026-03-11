@@ -1,3 +1,7 @@
+## 1.0.7 - 11/03/2026
+
+* Remove class modifier `final` from config classes.
+
 ## 1.0.6 - 11/03/2026
 
 * Add `rowSpacing` property.
