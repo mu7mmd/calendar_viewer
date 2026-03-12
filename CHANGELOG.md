@@ -1,3 +1,8 @@
+## 1.0.8 - 12/03/2026
+
+* Fix `onTap` and `onLongPress` callbacks not being triggered when using `dateConfigBuilder` or `nextMonthDateConfigBuilder`.
+* Add `hasOnTap` and `hasOnLongPress` getters in `CalendarDateConfig`.
+
 ## 1.0.7 - 11/03/2026
 
 * Remove class modifier `final` from config classes.
