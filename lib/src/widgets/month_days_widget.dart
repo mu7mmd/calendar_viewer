@@ -64,30 +64,34 @@ class _MonthDaysWidget extends StatelessWidget {
                     (dayIndex) {
                       final day = (weekIndex * 7) + dayIndex + 1;
                       final date = _getDate(day);
+
                       if (day <= month.days) {
+                        final config =
+                            dateConfigBuilder?.call(date) ?? dateConfig;
                         return _MonthDay(
                           day: day,
                           height: dateCardHeight - rowSpacing,
-                          config: dateConfigBuilder?.call(date) ?? dateConfig,
-                          onTap: dateConfig.onTap != null
-                              ? () => dateConfig.onTap!(date)
+                          config: config,
+                          onTap: config.hasOnTap
+                              ? () => config.onTap!(date)
                               : null,
-                          onLongPress: dateConfig.onLongPress != null
-                              ? () => dateConfig.onLongPress!(date)
+                          onLongPress: config.hasOnLongPress
+                              ? () => config.onLongPress!(date)
                               : null,
                         );
                       } else if (showNextMonthDays) {
                         nextMonthDay++;
+                        final config = nextMonthDateConfigBuilder?.call(date) ??
+                            nextMonthDateConfig;
                         return _MonthDay(
                           day: nextMonthDay,
                           height: dateCardHeight,
-                          config: nextMonthDateConfigBuilder?.call(date) ??
-                              nextMonthDateConfig,
-                          onTap: nextMonthDateConfig.onTap != null
-                              ? () => nextMonthDateConfig.onTap!(date)
+                          config: config,
+                          onTap: config.hasOnTap
+                              ? () => config.onTap!(date)
                               : null,
-                          onLongPress: nextMonthDateConfig.onLongPress != null
-                              ? () => nextMonthDateConfig.onLongPress!(date)
+                          onLongPress: config.hasOnLongPress
+                              ? () => config.onLongPress!(date)
                               : null,
                         );
                       } else {

@@ -11,6 +11,10 @@ class CalendarDateConfig {
   final ValueChanged<DateTime>? onTap;
   final ValueChanged<DateTime>? onLongPress;
 
+  bool get hasOnTap => onTap != null;
+
+  bool get hasOnLongPress => onLongPress != null;
+
   const CalendarDateConfig({
     this.splashColor,
     this.highlightColor,
