@@ -8,6 +8,7 @@ class _WeekDaysBar extends StatelessWidget {
     this.barStyle,
     this.onTap,
     this.dayStyleBuilder,
+    this.startWeekday,
   );
 
   final int year;
@@ -16,10 +17,12 @@ class _WeekDaysBar extends StatelessWidget {
   final CalendarWeekBarStyle barStyle;
   final ValueChanged<int>? onTap;
   final CalendarWeekdayStyle Function(int) dayStyleBuilder;
+  /// The starting weekday of the calendar (1 = Monday, 7 = Sunday). If null, dynamically shifts.
+  final int? startWeekday;
 
   @override
   Widget build(BuildContext context) {
-    int weekdayIndex = DateTime(year, month).weekday - 1;
+    int weekdayIndex = startWeekday != null ? startWeekday! - 1 : DateTime(year, month).weekday - 1;
     return Container(
       height: barStyle.height,
       padding: barStyle.padding,

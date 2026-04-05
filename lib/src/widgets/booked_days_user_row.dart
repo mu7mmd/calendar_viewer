@@ -8,12 +8,14 @@ class _BookedDaysUserRow extends StatelessWidget {
     required this.weekDays,
     required this.dayBuilder,
     required this.childBuilder,
+    this.startOffset = 0,
   });
 
   final int year;
   final int month;
   final int weekIndex;
   final int weekDays;
+  final int startOffset;
   final _IsDayReserved Function(DateTime) dayBuilder;
   final Widget Function(CalendarReservationData) childBuilder;
 
@@ -47,7 +49,8 @@ class _BookedDaysUserRow extends StatelessWidget {
 
     _IsDayReserved getDay(int dayIndex) {
       // Your logic to retrieve a day's booking info
-      final date = _getDate((weekIndex * 7) + dayIndex); // Get the date
+      final date =
+          _getDate((weekIndex * 7) + dayIndex - startOffset); // Get the date
       return dayBuilder(date); // Retrieve the day model
     }
 
@@ -68,16 +71,16 @@ class _BookedDaysUserRow extends StatelessWidget {
         // Determine hasPrevious
         bool hasPrevious = false;
         if (start == 1) {
-          final previous =
-              _getDate((weekIndex * 7) + 1).subtract(const Duration(days: 1));
+          final previous = _getDate((weekIndex * 7) + 1 - startOffset)
+              .subtract(const Duration(days: 1));
           hasPrevious = dayBuilder(previous).user?.id == currentUser.id;
         }
 
         // Determine hasNext
         bool hasNext = false;
         if (end == weekDays) {
-          final next =
-              _getDate((weekIndex * 7) + weekDays).add(const Duration(days: 1));
+          final next = _getDate((weekIndex * 7) + weekDays - startOffset)
+              .add(const Duration(days: 1));
           hasNext = dayBuilder(next).user?.id == currentUser.id;
         }
 

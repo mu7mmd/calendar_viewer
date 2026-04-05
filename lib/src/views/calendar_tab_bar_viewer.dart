@@ -46,10 +46,12 @@ class CalendarTabBarViewer extends StatelessWidget {
     this.onWeekdayTap,
     this.dateConfig = const CalendarDateConfig(),
     this.dateConfigBuilder,
-    this.nextMonthDateConfig = const CalendarDateConfig(),
-    this.nextMonthDateConfigBuilder,
+    this.outsideDateConfig = const CalendarDateConfig(),
+    this.outsideDateConfigBuilder,
     this.rowSpacing = 0,
-    this.showNextMonthDays = true,
+    this.showOutsideDays = true,
+    this.startWeekday,
+    this.alwaysShowFullRows = true,
     this.reservation,
   }) : assert(months.length == 12 &&
             weekdays.length == 7 &&
@@ -107,7 +109,7 @@ class CalendarTabBarViewer extends StatelessWidget {
   final CalendarDateConfig dateConfig;
 
   /// Style and properties for dates of the following month displayed in the current month's calendar.
-  final CalendarDateConfig nextMonthDateConfig;
+  final CalendarDateConfig outsideDateConfig;
 
   /// A function to provide custom styles for specific dates.
   ///
@@ -116,8 +118,8 @@ class CalendarTabBarViewer extends StatelessWidget {
 
   /// A function to provide custom styles for next-month dates.
   ///
-  /// Return a [CalendarDateConfig] for the given date, or `null` to use [nextMonthDateConfig] as default.
-  final CalendarDateConfig? Function(DateTime)? nextMonthDateConfigBuilder;
+  /// Return a [CalendarDateConfig] for the given date, or `null` to use [outsideDateConfig] as default.
+  final CalendarDateConfig? Function(DateTime)? outsideDateConfigBuilder;
 
   /// Configuration for displaying reservations on the calendar.
   ///
@@ -127,7 +129,17 @@ class CalendarTabBarViewer extends StatelessWidget {
   final double rowSpacing;
 
   /// Whether to show dates of the following month in the current month's calendar.
-  final bool showNextMonthDays;
+  final bool showOutsideDays;
+
+  /// Whether the calendar should always start with Sunday.
+  /// If true, the days will be shifted so the first column is Sunday.
+  /// Days from the previous month will be displayed using [outsideDateConfig] if [showOutsideDays] is true.
+  /// The starting weekday of the calendar (1 = Monday, 7 = Sunday). If null, dynamically shifts.
+  final int? startWeekday;
+
+  /// Whether to always render the maximum structural rows (6 for Sunday-start, 5 for standard)
+  /// so that the calendar maintains a consistent layout height across all months.
+  final bool alwaysShowFullRows;
 
   @override
   Widget build(BuildContext context) {
@@ -184,13 +196,15 @@ class CalendarTabBarViewer extends StatelessWidget {
                             ? (weekday) => onWeekdayTap!(weekday, month.num)
                             : null,
                         dateConfig: dateConfig,
-                        nextMonthDateConfig: nextMonthDateConfig,
+                        outsideDateConfig: outsideDateConfig,
                         dateCardHeight: (height - weekBarStyle.height) / 5,
                         dateConfigBuilder: dateConfigBuilder,
-                        nextMonthDateConfigBuilder: nextMonthDateConfigBuilder,
+                        outsideDateConfigBuilder: outsideDateConfigBuilder,
                         reservation: reservation,
                         rowSpacing: rowSpacing,
-                        showNextMonthDays: showNextMonthDays,
+                        showOutsideDays: showOutsideDays,
+                        startWeekday: startWeekday,
+                        alwaysShowFullRows: alwaysShowFullRows,
                       ))
                   .toList(),
             ),

@@ -140,6 +140,8 @@ class _CalendarViewerExampleState extends State<CalendarViewerExample> {
                   ),
                 ],
               ),
+              startWeekday: 7, // 7 = Sunday
+              // alwaysShowFullRows: false,
               dateConfigBuilder: (date) {
                 // Return custom style for specific dates
                 if (date.isAtSameMomentAs(_selectedDate) ||
@@ -155,7 +157,7 @@ class _CalendarViewerExampleState extends State<CalendarViewerExample> {
                 // return null for others to use [dateConfig] as default.
                 return null;
               },
-              nextMonthDateConfig: CalendarDateConfig(
+              outsideDateConfig: CalendarDateConfig(
                 decoration: BoxDecoration(
                   color: Colors.black12,
                   border: Border.all(color: Colors.black12, width: 0.5),
