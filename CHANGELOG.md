@@ -1,3 +1,10 @@
+## 1.1.0 - 05/04/2026
+
+* **Breaking:** Replaced boolean `showNextMonthDays` with `showOutsideDays` to properly support prefix days.
+* **Breaking:** Renamed `nextMonthDateConfig` and `nextMonthDateConfigBuilder` to `outsideDateConfig` and `outsideDateConfigBuilder`.
+* **Feature:** Added `startWeekday` parameter (int?) to allow explicit control over the calendar's first day of the week (1 = Monday, 7 = Sunday).
+* **Feature:** Added `alwaysShowFullRows` to force consistent layout sizing across all months dynamically, perfectly fixing previous vertical overflow constraints.
+
 ## 1.0.8 - 12/03/2026
 
 * Fix `onTap` and `onLongPress` callbacks not being triggered when using `dateConfigBuilder` or `nextMonthDateConfigBuilder`.

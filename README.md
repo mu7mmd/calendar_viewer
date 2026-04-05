@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-[![pub package](https://img.shields.io/badge/pub-v1.0.8-blue?logo=dart)](https://pub.dev/packages/calendar_viewer)
+[![pub package](https://img.shields.io/badge/pub-v1.1.0-blue?logo=dart)](https://pub.dev/packages/calendar_viewer)
 [![github](https://img.shields.io/badge/github-mu7mmd-limegreen?logo=github)](https://github.com/mu7mmd)
 [![linkedin](https://img.shields.io/badge/linkedin-3mdy-blue?logo=linkedin)](https://www.linkedin.com/in/3mdy)
 
@@ -40,7 +40,7 @@ A highly customizable calendar widget designed for reservations, events, and mul
 ### Add Dependency
 ```yaml
 dependencies:
-  calendar_viewer: ^1.0.8 # Use the latest version
+  calendar_viewer: ^1.1.0 # Use the latest version
 ```
 
 ### Import Package
@@ -72,7 +72,7 @@ CalendarTabBarViewer(
   initialDate: DateTime.now(),
   months: ['Jan', 'Feb', ...], // List of 12 months
   weekdays: ['Mon', 'Tue', ...], // List of 7 weekdays
-  nextMonthDateConfig: CalendarDateConfig(
+  outsideDateConfig: CalendarDateConfig(
       decoration: BoxDecoration(
         color: Colors.black12,
         border: Border.all(color: Colors.black12, width: 0.5),
@@ -127,7 +127,7 @@ CalendarTabBarViewer(
       color: Colors.teal.withValues(alpha: .6),
     ),
   ),
-  nextMonthDateConfig: CalendarDateConfig(
+  outsideDateConfig: CalendarDateConfig(
       decoration: BoxDecoration(
         color: Colors.black12,
         border: Border.all(color: Colors.black12, width: 0.5),
@@ -158,7 +158,11 @@ CalendarTabBarViewer(
 | `onWeekdayTap`        | Callback triggered on weekday tap with weekday and month as arguments.      |
 | `customWeekdayStyle`  | Map of styles for specific weekdays (e.g., weekends).                       |
 | `monthsTabBarConfig`  | Configuration for the months tab bar.                                       |
-| `showNextMonthDays`   | Whether to display days from the next month in the current month's view.    |
+| `outsideDateConfig`   | Secondary default configuration for out-of-bounds dates.                    |
+| `outsideDateConfigBuilder` | Function to dynamically customize specific dates outside the active month. |
+| `startWeekday`        | Target integer (1 = Monday, 7 = Sunday) to set fixed start alignment.       |
+| `alwaysShowFullRows`  | Locks view to perfectly output 6 rows or 5 rows maintaining aspect ratio.   |
+| `showOutsideDays`     | Whether to display padded days extending into previous/next calendar month. |
 
 ---
 
